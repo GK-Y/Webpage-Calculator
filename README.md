@@ -11,9 +11,8 @@ A simple calculator web page with **HTML**, **CSS**, and **JavaScript**(not prop
 ---
 
 ## Demo
-```
+
 ![Calculator Image](Image/Final.png)
-```
 
 ---
 
