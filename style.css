@@ -1,0 +1,229 @@
+/* .Calculator{
+    background-color: aqua;
+} */
+
+:root{
+    --calc-width:500px;
+    --body-rad:0.5em;
+    --cell-rad:1em;
+    --cell-btm-marg:20px;
+    --cell-tp-marg:4em;
+    --cell-height:100px;
+    --cell-clr:#f3f0c0;
+    --body-clr:#a8f19e ;
+    --body-border-clr:rgb(139, 161, 114);
+    --body-shadow-clr:rgb(84, 143, 36);
+    --display-clr:#a8f19e;
+    --strip-clr:#f3e7b4;
+    --sheet-clr:#b7e9da;
+}
+
+@font-face {
+        font-family: "JerseyFont";
+        src: url("font/Jersey15-Regular.ttf") ;
+        /* font-weight: normal;
+        font-style: normal;
+        font-display: swap; */
+        font-size: 0em;
+    }
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "JerseyFont",sans-serif;
+    
+}
+
+/* to position to centre :
+take a parent body 
+flex justify and align
+viewport height set too 100
+ */
+
+main{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+section.Calculator{
+    border: solid var(--body-border-clr) 5px;
+    border-radius: var(--body-rad);
+    box-shadow: 15px 10px 5px var(--body-shadow-clr);
+}
+
+
+/* 5x4 grid */
+.body{
+    background-color:var(--body-clr);
+    display: grid;
+    /* border: solid black; */
+    width: var(--calc-width);
+    grid-template-rows: repeat(6,100px);
+    grid-template-columns: repeat(4,100px);
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+    border-radius: var(--body-rad);
+    height: 580px;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+div#display{
+    /* display: flex; */
+    background-color: var(--display-clr);
+    /* margin: 10px; */
+    /* padding:10px; */
+    /* border: solid black; */
+    width: auto;
+    height: 125px;
+
+    background-color: var(--cell-clr);
+    /* width: 100px; */
+    border-radius: var(--cell-rad);
+    /* justify-content: end;
+    align-items: center; */
+}
+
+div #output{
+    display: flex;
+    justify-content: end;
+    padding-top: 20px;
+    /* border: solid black; */
+    margin-right: 0px;
+    margin-top: 5px;
+    width: 430px;
+    height: 50px;
+    font-size: 60px;
+}
+
+div .key{
+    height: var(--cell-height);
+    /* border: solid black; */
+    border-radius: var(--cell-rad);
+    margin-bottom: var(--cell-btm-marg);
+    background-color: var(--cell-clr);
+    margin-top: var(--cell-tp-marg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* dot has to be in a different place */
+#dot{
+    grid-column: 3/4;
+    grid-row: 5/6;
+}
+
+#zero{
+    grid-column: 1/3;
+    grid-row: 5/6;
+    /* border: solid black; */
+    height: var(--cell-height);
+    border-radius: var(--cell-rad);
+    margin-bottom: var(--cell-btm-marg);
+    margin-top: var(--cell-tp-marg);
+    background-color: var(--cell-clr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#equals{
+    grid-column: -2/-1;
+    grid-row: 4/6;
+
+    /* border: solid black; */
+    height: calc(var(--cell-height)*2);
+    border-radius: var(--cell-rad);
+    margin-bottom: var(--cell-btm-marg);
+    margin-top: var(--cell-tp-marg);
+    background-color: var(--cell-clr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+div .key, .doublekey{
+    font-size: 20px;
+}
+
+.key:hover,#zero:hover,#equals:hover{
+    background-color: #b7e9da;
+    box-shadow: 3px 3px 3px var(--body-border-clr);
+}
+
+
+.strips{
+    /* filter: blur(50px); */
+    background-color: var(--strip-clr);
+    
+}
+
+
+/* to keep an element behind */
+#strip1{
+    position: fixed;
+    display: inline;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    /* border: solid black; */
+    width: 100%;
+    height: 300px;
+    transform: rotateZ(60deg) scaleX(2); 
+    /* background:linear-gradient(135deg, #ffe066, #ffa94d); */
+}
+
+#strip2{
+    position: fixed;
+    display: inline;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    /* border: solid black; */
+    width: 100%;
+    height: 300px;
+    /* without sccale it doesnt expand as intended along its
+    relative x axis for some god forsaken reason */
+    transform: rotateZ(60deg) translateY(700px)  scaleX(2); 
+    /* background:linear-gradient(135deg, #ffe066, #ffa94d); */
+}
+
+#strip3{
+    position: fixed;
+    display: inline;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    /* border: solid black; */
+    width: 100%;
+    height: 300px;
+    /* without sccale it doesnt expand as intended along its
+    relative x axis for some god forsaken reason */
+    transform: rotateZ(60deg) translateY(-700px)  scaleX(2); 
+    /* background:linear-gradient(135deg, #ffe066, #ffa94d); */
+}
+
+
+#sheet{
+    position: fixed;
+    display: inline;
+    height: 100%;
+    width: 100%;
+    z-index: -2;
+    /* border: solid black; */
+    /* without sccale it doesnt expand as intended along its
+    relative x axis for some god forsaken reason */
+    background-color: var(--sheet-clr);
+    /* background:linear-gradient(135deg, #ffe066, #ffa94d); */
+}
+
